@@ -15,20 +15,22 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 
 
-class GetRunningProcessList //implements ShouldQueue
+class CreateFile //implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $timeout = 240;//10 min
     public $tries = 2;
+    public $fileName;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($fileName)
     {
-        //Dependencies
+
+        $this->fileName= $fileName;
 
     }
 
@@ -40,15 +42,20 @@ class GetRunningProcessList //implements ShouldQueue
     public function handle()
     {
 
-//            $process = new Process('sudo service supervisor restart');
-            $process = new Process('ps aux');
+        if (!file_exists("/opt/myprogram/".$this->fileName.'.txt')) {
+
+            $process = new Process('vim'.$this->fileName.'.txt');
             $process->run();
-            // executes after the command finishes:wq:q::wqre
+
+            // executes after the command finishes
             if (!$process->isSuccessful()) {
                 throw new ProcessFailedException($process);
             }
 
-            return [$process->getOutput()];
+            return true;
+
+        }else return false;
+
 
 
     }

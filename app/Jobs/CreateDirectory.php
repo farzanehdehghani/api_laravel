@@ -15,20 +15,22 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 
 
 
-class GetRunningProcessList //implements ShouldQueue
+class CreateDirectory //implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $timeout = 240;//10 min
     public $tries = 2;
+    public $directoryName;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($directoryName)
     {
-        //Dependencies
+
+        $this->directoryName= $directoryName;
 
     }
 
@@ -40,15 +42,10 @@ class GetRunningProcessList //implements ShouldQueue
     public function handle()
     {
 
-//            $process = new Process('sudo service supervisor restart');
-            $process = new Process('ps aux');
-            $process->run();
-            // executes after the command finishes:wq:q::wqre
-            if (!$process->isSuccessful()) {
-                throw new ProcessFailedException($process);
-            }
-
-            return [$process->getOutput()];
+        if (!file_exists("/opt/myprogram/".$this->directoryName)) {
+            mkdir('path/to/directory'.$this->directoryName, 0777, true);
+            return true;
+        }else return false;
 
 
     }
