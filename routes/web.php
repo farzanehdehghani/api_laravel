@@ -24,3 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/get-running-processes', 'ApiController@getRunningProcessesList')->name('getRunningProcessesList');
+Route::get('/get-running-processes', 'ApiController@createDirectory')->name('getRunningProcessesList');
+Route::get('/get-running-processes', 'ApiController@createFile')->name('getRunningProcessesList');

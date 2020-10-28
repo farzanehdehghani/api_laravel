@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\CreateDirectory;
+use App\Jobs\CreateFile;
 use App\Jobs\GetRunningProcessList;
 use App\Jobs\repairSystem;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class ApiController extends Controller
     //Create a directory with user's specified name in "/opt/myprogram/" director
     public function createDirectory(Request $request){
 
-        $directoryCreated=CreateDirectory::dispatch();
+        $directoryCreated=CreateDirectory::dispatch($request->directory_name);
         if($directoryCreated)
         return response()->json(
             baseAnswer()
@@ -46,7 +47,7 @@ class ApiController extends Controller
     }
     public function createFile(Request $request){
 
-        $fileCreated=CreateFile::dispatch();
+        $fileCreated=CreateFile::dispatch($request->file_name);
         if($fileCreated)
         return response()->json(
             baseAnswer()
