@@ -56,12 +56,12 @@ class ApiController extends Controller
 
         $directoryCreated=CreateDirectory::dispatch($request->directory_name);
         if($directoryCreated)
-        return response()->json(
-            $this->apiRepository->baseAnswer()
-                ->setMessage('directory created successfully !')
-                ->setStatus('success')
-                ->setData($directoryCreated)
-        );
+            return response()->json(
+                $this->apiRepository->baseAnswer()
+                    ->setMessage('directory created successfully !')
+                    ->setStatus('success')
+                    ->setData($directoryCreated)
+            );
         else
             return response()->json(
                 $this->apiRepository->baseAnswer()
