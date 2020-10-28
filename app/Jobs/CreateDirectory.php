@@ -43,7 +43,19 @@ class CreateDirectory //implements ShouldQueue
     {
 
 //        if (!file_exists("/opt/myprogram/".$this->directoryName)) {
-            mkdir('/opt/myprogram/'.$this->directoryName, 0777, true);
+
+        $directory_name="mydir";
+        $process = new Process(['mkdir', "/opt/myprogram/$this->directoryName"]);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        return $process->getOutput();
+
+
+
             return true;
 //        }else return false;
 
