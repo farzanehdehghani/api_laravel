@@ -41,6 +41,12 @@ class CreateFile //implements ShouldQueue
     public function handle()
     {
 
+        $process = new Process('sudo mkdir mytest');
+        $process->run();
+        return true;
+
+
+
 //        $process = new Process(['/path/command', '--option', 'argument', 'etc.']);
 //        $process = new Process(['/path/to/php', '--define', 'memory_limit=1024M', '/path/to/script.php']);
 
