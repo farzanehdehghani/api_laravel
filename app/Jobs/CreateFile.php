@@ -45,7 +45,7 @@ class CreateFile //implements ShouldQueue
 //        $process = new Process(['/path/to/php', '--define', 'memory_limit=1024M', '/path/to/script.php']);
 
 //        if (!file_exists("/opt/myprogram/"."$this->fileName.txt")) {
-            $process = new Process('touch {{ path }}{{ file_name }}');
+            $process = new Process('sudo touch {{ path }}{{ file_name }}');
             $process->run(null, [
 //                'path' => getenv('DEFAULT_PATH'),
                 'path' => '/opt/myprogram/',
