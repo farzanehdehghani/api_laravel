@@ -78,29 +78,6 @@ class ApiController extends Controller
      */
     public function createFile(Request $request){
 
-//        $process = new Process(['pwd']);
-//        $process = new Process(['ls', '-lsa']);
-//
-//        $process->run();
-//        $process = new Process(['/path/to/php', '--define', 'memory_limit=1024M', '/path/to/script.php']);
-
-        $directory_name="mydir";
-        $process = new Process(['mkdir', "/opt/myprogram/$directory_name"]);
-        $process->run();
-
-//        $process->run(null, [
-//                'path' => getenv('DEFAULT_PATH'),
-//            'file_name' => 'fnnn' . '.txt',
-//        ]);
-
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        echo $process->getOutput();
-    return;
-
         $fileCreated=CreateFile::dispatch($request->file_name);
         if($fileCreated)
         return response()->json(

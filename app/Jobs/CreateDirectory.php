@@ -30,7 +30,7 @@ class CreateDirectory //implements ShouldQueue
     public function __construct($directoryName)
     {
 
-        $this->directoryName= $directoryName;
+        $this->directoryName= sanitize($directoryName);
 
     }
 
