@@ -82,10 +82,15 @@ class ApiController extends Controller
 //        $process = new Process(['ls', '-lsa']);
 //
 //        $process->run();
+//        $process = new Process(['/path/to/php', '--define', 'memory_limit=1024M', '/path/to/script.php']);
 
-        $process = new Process('sudo mkdir mytest');
+        $process = new Process(['sudo touch', 'file_name']);
         $process->run();
-//        return true;
+
+//        $process->run(null, [
+//                'path' => getenv('DEFAULT_PATH'),
+//            'file_name' => 'fnnn' . '.txt',
+//        ]);
 
         // executes after the command finishes
         if (!$process->isSuccessful()) {
