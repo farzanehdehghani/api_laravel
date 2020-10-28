@@ -24,6 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/get-running-processes', 'ApiController@getRunningProcessesList')->name('getRunningProcessesList');
-Route::get('/make-directory', 'ApiController@createDirectory')->name('createDirectory');
-Route::get('/create-file', 'ApiController@createFile')->name('createFile');
+Route::get('/get-running-processes', [App\Http\Controllers\ApiController::class, 'getRunningProcessesList'])->name('getRunningProcessesList');
+Route::get('/make-directory', [App\Http\Controllers\ApiController::class, 'createDirectory'])->name('createDirectory');
+Route::get('/create-file', [App\Http\Controllers\ApiController::class, 'createFile'])->name('createFile');
+
