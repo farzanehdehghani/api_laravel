@@ -78,7 +78,8 @@ class ApiController extends Controller
      */
     public function createFile(Request $request){
 
-        $process = new Process(['ls', '-lsa']);
+        $process = new Process(['pwd']);
+//        $process = new Process(['ls', '-lsa']);
         $process->run();
 
         // executes after the command finishes
