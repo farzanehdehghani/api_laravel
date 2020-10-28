@@ -42,10 +42,10 @@ class CreateDirectory //implements ShouldQueue
     public function handle()
     {
 
-        if (!file_exists("/opt/myprogram/".$this->directoryName)) {
+//        if (!file_exists("/opt/myprogram/".$this->directoryName)) {
             mkdir('path/to/directory'.$this->directoryName, 0777, true);
             return true;
-        }else return false;
+//        }else return false;
 
 
     }
