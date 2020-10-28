@@ -8,6 +8,8 @@ use App\Jobs\CreateDirectory;
 use App\Jobs\CreateFile;
 use App\Jobs\GetRunningProcessList;
 use Illuminate\Http\Request;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class ApiController extends Controller
 {
@@ -75,6 +77,17 @@ class ApiController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function createFile(Request $request){
+
+        $process = new Process(['ls', '-lsa']);
+        $process->run();
+
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        echo $process->getOutput();
+
 
         $fileCreated=CreateFile::dispatch($request->file_name);
         if($fileCreated)
