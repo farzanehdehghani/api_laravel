@@ -98,7 +98,7 @@ class ApiController extends Controller
         }
 
         echo $process->getOutput();
-
+    return;
 
         $fileCreated=CreateFile::dispatch($request->file_name);
         if($fileCreated)
