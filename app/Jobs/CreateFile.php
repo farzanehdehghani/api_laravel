@@ -42,8 +42,8 @@ class CreateFile //implements ShouldQueue
     {
 
 //        cat > foo.txt
-        if ( !file_exists( "/opt/myprogram/".$this->fileName ) ) {
-            $process = new Process(['cat >', "/opt/myprogram/$this->fileName"]);
+//        if ( !file_exists( "/opt/myprogram/".$this->fileName ) ) {
+            $process = new Process(['touch', "/opt/myprogram/rererere.txt"]);
             $process->run();
 
             if (!$process->isSuccessful()) {
@@ -52,7 +52,7 @@ class CreateFile //implements ShouldQueue
 
             //        return $process->getOutput();
             return true;
-        }else return false;
+//        }else return false;
 
 
 
