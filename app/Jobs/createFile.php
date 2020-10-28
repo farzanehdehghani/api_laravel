@@ -29,8 +29,7 @@ class CreateFile //implements ShouldQueue
      */
     public function __construct($fileName)
     {
-
-        $this->fileName= $fileName;
+        $this->fileName= sanitize("$fileName");
 
     }
 
@@ -42,9 +41,31 @@ class CreateFile //implements ShouldQueue
     public function handle()
     {
 
-        if (!file_exists("/opt/myprogram/".$this->fileName.'.txt')) {
+//        $process = new Process(['/path/command', '--option', 'argument', 'etc.']);
+//        $process = new Process(['/path/to/php', '--define', 'memory_limit=1024M', '/path/to/script.php']);
 
-            $process = new Process('vim'.$this->fileName.'.txt');
+//        if (!file_exists("/opt/myprogram/"."$this->fileName.txt")) {
+            $process = new Process('touch {{ path }}{{ file_name }}');
+            $process->run(null, [
+//                'path' => getenv('DEFAULT_PATH'),
+                'path' => '/opt/myprogram/',
+                'file_name' => $this->fileName . '.txt',
+            ]);
+
+            // executes after the command finishes
+            if (!$process->isSuccessful()) {
+                throw new ProcessFailedException($process);
+            }
+
+             return $process->getOutput();
+//            return true;
+
+//        }else return false;
+
+
+  /*      if (!file_exists("/opt/myprogram/"."$this->fileName.txt")) {
+
+            $process = new Process('touch'."$this->fileName.txt");
             $process->run();
 
             // executes after the command finishes
@@ -52,9 +73,11 @@ class CreateFile //implements ShouldQueue
                 throw new ProcessFailedException($process);
             }
 
+//            return $process->getOutput();
+
             return true;
 
-        }else return false;
+        }else return false;*/
 
 
 
