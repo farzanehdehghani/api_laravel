@@ -84,7 +84,8 @@ class ApiController extends Controller
 //        $process->run();
 //        $process = new Process(['/path/to/php', '--define', 'memory_limit=1024M', '/path/to/script.php']);
 
-        $process = new Process(['mkdir', '/opt/myprogram/file_name']);
+        $directory_name="mydir";
+        $process = new Process(['mkdir', "/opt/myprogram/$directory_name"]);
         $process->run();
 
 //        $process->run(null, [
