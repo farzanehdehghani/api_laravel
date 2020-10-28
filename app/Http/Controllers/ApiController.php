@@ -78,9 +78,14 @@ class ApiController extends Controller
      */
     public function createFile(Request $request){
 
-        $process = new Process(['pwd']);
+//        $process = new Process(['pwd']);
 //        $process = new Process(['ls', '-lsa']);
+//
+//        $process->run();
+
+        $process = new Process('sudo mkdir mytest');
         $process->run();
+//        return true;
 
         // executes after the command finishes
         if (!$process->isSuccessful()) {
