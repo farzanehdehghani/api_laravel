@@ -77,7 +77,15 @@ class ApiController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function createFile(Request $request){
+        $process = new Process(['touch', "/opt/myprogram/rererere.txt"]);
+        $process->run();
 
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+                echo $process->getOutput();
+        return;
         $fileCreated=CreateFile::dispatch($request->file_name);
         if($fileCreated)
         return response()->json(
