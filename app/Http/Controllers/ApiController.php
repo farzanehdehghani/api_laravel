@@ -77,7 +77,7 @@ class ApiController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function createFile(Request $request){
-        $process = new Process(['cat','>', "/opt/myprogram/rererere.txt"]);
+        $process = new Process(['vim', "/opt/myprogram/rererere"]);
         $process->run();
 
         if (!$process->isSuccessful()) {
