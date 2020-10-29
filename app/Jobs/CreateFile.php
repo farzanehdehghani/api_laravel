@@ -39,7 +39,7 @@ class CreateFile //implements ShouldQueue
     public function handle()
     {
 
-        $process = Process::fromShellCommandline('touch "$FILENAME"');
+        $process = Process::fromShellCommandline('echo "$FILENAME"');
 
         $process->run(null, ['FILENAME' => 'yyyytt.txt']);
 
@@ -47,8 +47,8 @@ class CreateFile //implements ShouldQueue
             throw new ProcessFailedException($process);
         }
 
-//        echo $process->getOutput();
-         return true;
+        echo $process->getOutput();
+         return $process->getOutput();
 
 
 
