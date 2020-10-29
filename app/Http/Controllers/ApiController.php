@@ -46,22 +46,23 @@ class ApiController extends Controller
 //
 //        }
 
-//        $process->start();
-//
-//        foreach ($process as $type => $data) {
-//            if ($process::OUT === $type) {
-//                echo "\nRead from stdout: ".$data;
-//            } else { // $process::ERR === $type
-//                echo "\nRead from stderr: ".$data;
-//            }
-//        }
-
-
         $process->start();
-        $iterator = $process->getIterator($process::ITER_SKIP_ERR | $process::ITER_KEEP_OUTPUT);
-        foreach ($iterator as $data) {
-            echo $data."\n";
+
+        foreach ($process as $type => $data) {
+            if ($process::OUT === $type) {
+                echo "\nRead from stdout: ".$data;
+            } else { // $process::ERR === $type
+                echo "\nRead from stderr: ".$data;
+            }
         }
+
+        echo "--------------------";
+
+//        $process->start();
+//        $iterator = $process->getIterator($process::ITER_SKIP_ERR | $process::ITER_KEEP_OUTPUT);
+//        foreach ($iterator as $data) {
+//            echo $data."\n";
+//        }
 
         return ;
 
