@@ -47,7 +47,7 @@ class CreateFile //implements ShouldQueue
             throw new ProcessFailedException($process);
         }
 
-        echo $process->getOutput();
+//        echo $process->getOutput();
          return $process->getOutput();
 
 
