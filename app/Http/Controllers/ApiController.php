@@ -63,6 +63,8 @@ class ApiController extends Controller
             echo $data."\n";
         }
 
+        return ;
+
 //        $processList=GetRunningProcessList::dispatch();
 
             echo $processList;
