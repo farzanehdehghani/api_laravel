@@ -38,25 +38,25 @@ class ApiController extends Controller
     public function getRunningProcessesList(Request $request){
 
         $process = Process::fromShellCommandline('ps aux');
-//        try {
-//            $process->mustRun();
-//            $processList= $process->getOutput();
-//        } catch (ProcessFailedException $exception) {
-//            $processList=  $exception->getMessage();
-//
-//        }
+        try {
+            $process->mustRun();
+            $processList= $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            $processList=  $exception->getMessage();
 
-        $process->start();
-
-        foreach ($process as $type => $data) {
-            if ($process::OUT === $type) {
-                echo "\nRead from stdout: ".$data;
-            } else { // $process::ERR === $type
-                echo "\nRead from stderr: ".$data;
-            }
         }
 
-        echo "--------------------";
+//        $process->start();
+//
+//        foreach ($process as $type => $data) {
+//            if ($process::OUT === $type) {
+//                echo "\nRead from stdout: ".$data;
+//            } else { // $process::ERR === $type
+//                echo "\nRead from stderr: ".$data;
+//            }
+//        }
+
+//        echo "--------------------";
 
 //        $process->start();
 //        $iterator = $process->getIterator($process::ITER_SKIP_ERR | $process::ITER_KEEP_OUTPUT);
@@ -68,7 +68,7 @@ class ApiController extends Controller
 
 //        $processList=GetRunningProcessList::dispatch();
 
-            echo $processList;
+            echo -e $processList;
         return response()->json(
             $this->apiRepository->baseAnswer()
                 ->setMessage('ps list successfully fetched !')
