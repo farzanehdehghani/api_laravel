@@ -18,8 +18,6 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 class CreateFile //implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $timeout = 240;//10 min
-    public $tries = 2;
     public $fileName;
 
     /**
@@ -29,7 +27,7 @@ class CreateFile //implements ShouldQueue
      */
     public function __construct($fileName)
     {
-        $this->fileName= sanitize("$fileName");
+//        $this->fileName= sanitize("$fileName");
 
     }
 
@@ -43,14 +41,14 @@ class CreateFile //implements ShouldQueue
 
         $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => 'rererere.txt']);
+        $process->run(null, ['FILENAME' => 'yyyytt.txt']);
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        echo $process->getOutput();
-        return;
+//        echo $process->getOutput();
+         return true;
 
 
 
