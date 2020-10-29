@@ -86,7 +86,7 @@ class ApiController extends Controller
 //        $process = Process::fromShellCommandline('echo "!MESSAGE!"');
 
         // On both Unix-like and Windows
-        $process->run(null, ['FILENAME' => 'rererere.txt']);
+        $process->run(null, ['FILENAME' => '$this->fileName.txt']);
 
 
 //        $process = new Process(["cat", " > /opt/myprogram/rererere.txt"]);

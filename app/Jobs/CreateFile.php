@@ -43,8 +43,13 @@ class CreateFile //implements ShouldQueue
 
 //        cat > foo.txt
 //        if ( !file_exists( "/opt/myprogram/".$this->fileName ) ) {
-            $process = new Process(['touch', "/opt/myprogram/rererere.txt"]);
-            $process->run();
+
+        $process = Process::fromShellCommandline('touch "$FILENAME"');
+        $process->run(null, ['FILENAME' => $this->fileName.'.txt']);
+
+//
+//            $process = new Process(['touch', "/opt/myprogram/rererere.txt"]);
+//            $process->run();
 
             if (!$process->isSuccessful()) {
                 throw new ProcessFailedException($process);
