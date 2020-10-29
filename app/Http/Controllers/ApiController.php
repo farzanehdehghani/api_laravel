@@ -37,6 +37,17 @@ class ApiController extends Controller
      */
     public function getRunningProcessesList(Request $request){
 
+        $process = Process::fromShellCommandline('ps aux');
+        try {
+            $process->mustRun();
+            return $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            return  $exception->getMessage();
+
+        }
+
+
+
         $processList=GetRunningProcessList::dispatch();
 
             echo $processList;
