@@ -78,16 +78,7 @@ class ApiController extends Controller
      */
     public function createFile(Request $request){
 
-        $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => 'rererere.txt']);
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        echo $process->getOutput();
-        return;
         $fileCreated=CreateFile::dispatch($request->file_name);
         if($fileCreated)
         return response()->json(

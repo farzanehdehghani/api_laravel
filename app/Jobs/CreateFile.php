@@ -27,9 +27,9 @@ class CreateFile //implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($fileName)
     {
-
+        $this->fileName= sanitize("$fileName");
 
     }
 
@@ -41,74 +41,16 @@ class CreateFile //implements ShouldQueue
     public function handle()
     {
 
-//        cat > foo.txt
-//        if ( !file_exists( "/opt/myprogram/".$this->fileName ) ) {
-
         $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        // On Windows
-//        $process = Process::fromShellCommandline('echo "!MESSAGE!"');
+        $process->run(null, ['FILENAME' => 'rererere.txt']);
 
-        // On both Unix-like and Windows
-        $process->run(null, ['FILENAME' => 'tyttytyut.txt']);
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
 
-//
-//            $process = new Process(['touch', "/opt/myprogram/rererere.txt"]);
-//            $process->run();
-
-            if (!$process->isSuccessful()) {
-                throw new ProcessFailedException($process);
-            }
-
-            //        return $process->getOutput();
-            return true;
-//        }else return false;
-
-
-
-//        $process = new Process('sudo mkdir mytest');
-//        $process->run();
-//        return true;
-//
-//
-//
-////        $process = new Process(['/path/command', '--option', 'argument', 'etc.']);
-////        $process = new Process(['/path/to/php', '--define', 'memory_limit=1024M', '/path/to/script.php']);
-//
-////        if (!file_exists("/opt/myprogram/"."$this->fileName.txt")) {
-//            $process = new Process('sudo touch {{ path }}{{ file_name }}');
-//            $process->run(null, [
-////                'path' => getenv('DEFAULT_PATH'),
-//                'path' => '/opt/myprogram/',
-//                'file_name' => $this->fileName . '.txt',
-//            ]);
-//
-//            // executes after the command finishes
-//            if (!$process->isSuccessful()) {
-//                throw new ProcessFailedException($process);
-//            }
-//
-//             return $process->getOutput();
-////            return true;
-//
-////        }else return false;
-//
-//
-//  /*      if (!file_exists("/opt/myprogram/"."$this->fileName.txt")) {
-//
-//            $process = new Process('touch'."$this->fileName.txt");
-//            $process->run();
-//
-//            // executes after the command finishes
-//            if (!$process->isSuccessful()) {
-//                throw new ProcessFailedException($process);
-//            }
-//
-////            return $process->getOutput();
-//
-//            return true;
-//
-//        }else return false;
+        echo $process->getOutput();
+        return;
 
 
 
