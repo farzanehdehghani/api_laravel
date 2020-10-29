@@ -38,10 +38,17 @@ class CreateFile //implements ShouldQueue
      */
     public function handle()
     {
+        $fileName=sanitize($request->file_name);
 
         $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => 'rererere.txt']);
+        $process->run(null, ['FILENAME' => "$fileName.txt"]);
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $fileCreated= $process->getOutput();
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);

@@ -79,38 +79,16 @@ class ApiController extends Controller
     public function createFile(Request $request){
 
 
+        $fileCreated=  $this->apiRepository->createFile($request->file_name);
 
-        $process = Process::fromShellCommandline('touch "$FILENAME"');
+//      $fileCreated=CreateFile::dispatch$request->file_name;
 
-        $process->run(null, ['FILENAME' => 'yuyuyuyuyuy.txt']);
-
-
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        $fileCreated= $process->getOutput();
-
-
-
-//        $fileCreated=CreateFile::dispatch();
-//        echo $fileCreated;
-//        return $fileCreated;
-        if($fileCreated)
         return response()->json(
             $this->apiRepository->baseAnswer()
                 ->setMessage('file created successfully !')
                 ->setStatus('success')
                 ->setData($fileCreated)
         );
-        else
-            return response()->json(
-                $this->apiRepository->baseAnswer()
-                    ->setMessage('file already exists !')
-                    ->setStatus('failed')
-                    ->setData($fileCreated)
-            );
 
     }
 
