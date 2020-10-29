@@ -78,26 +78,6 @@ class ApiController extends Controller
      */
     public function createFile(Request $request){
 
-        // On Unix-like OSes (Linux, macOS)
-//        $process = Process::fromShellCommandline('echo "$MESSAGE"');
-        $process = Process::fromShellCommandline('touch "$FILENAME"');
-
-        // On Windows
-//        $process = Process::fromShellCommandline('echo "!MESSAGE!"');
-
-        // On both Unix-like and Windows
-        $process->run(null, ['FILENAME' => '$this->fileName.txt']);
-
-
-//        $process = new Process(["cat", " > /opt/myprogram/rererere.txt"]);
-//        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-                echo $process->getOutput();
-        return;
         $fileCreated=CreateFile::dispatch($request->file_name);
         if($fileCreated)
         return response()->json(
