@@ -27,9 +27,9 @@ class CreateFile //implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($fileName)
+    public function __construct()
     {
-        $this->fileName= sanitize($fileName);
+
 
     }
 
@@ -46,8 +46,15 @@ class CreateFile //implements ShouldQueue
 
         $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => "tset.txt"]);
+        // On Windows
+//        $process = Process::fromShellCommandline('echo "!MESSAGE!"');
 
+        // On both Unix-like and Windows
+        $process->run(null, ['FILENAME' => 'tyttytyut.txt']);
+
+//
+//            $process = new Process(['touch', "/opt/myprogram/rererere.txt"]);
+//            $process->run();
 
             if (!$process->isSuccessful()) {
                 throw new ProcessFailedException($process);
