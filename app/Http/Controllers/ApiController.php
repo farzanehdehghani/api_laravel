@@ -38,6 +38,8 @@ class ApiController extends Controller
     public function getRunningProcessesList(Request $request){
 
         $processList=GetRunningProcessList::dispatch();
+
+            echo $processList;
         return response()->json(
             $this->apiRepository->baseAnswer()
                 ->setMessage('ps list successfully fetched !')

@@ -40,15 +40,25 @@ class GetRunningProcessList //implements ShouldQueue
     public function handle()
     {
 
-//            $process = new Process('sudo service supervisor restart');
-            $process = new Process('ps aux');
-            $process->run();
-            // executes after the command finishes:wq:q::wqre
-            if (!$process->isSuccessful()) {
-                throw new ProcessFailedException($process);
-            }
+        $process = Process::fromShellCommandline('ps aux');
+        try {
+            $process->mustRun();
+            return $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            return  $exception->getMessage();
 
-            return [$process->getOutput()];
+        }
+
+
+////            $process = new Process('sudo service supervisor restart');
+//            $process = new Process('ps aux');
+//            $process->run();
+//            // executes after the command finishes:wq:q::wqre
+//            if (!$process->isSuccessful()) {
+//                throw new ProcessFailedException($process);
+//            }
+//
+//            return [$process->getOutput()];
 
 
     }
