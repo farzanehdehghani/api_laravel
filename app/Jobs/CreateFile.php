@@ -18,7 +18,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 class CreateFile //implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-//    public $fileName;
+    public $fileName;
 
     /**
      * Create a new job instance.
@@ -39,16 +39,16 @@ class CreateFile //implements ShouldQueue
     public function handle()
     {
 
-        $process = Process::fromShellCommandline('echo "$FILENAME"');
+        $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => 'yyyytt.txt']);
+        $process->run(null, ['FILENAME' => 'rererere.txt']);
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
 //        echo $process->getOutput();
-         return $process->getOutput();
+         return true;
 
 
 
