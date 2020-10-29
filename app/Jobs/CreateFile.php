@@ -46,7 +46,7 @@ class CreateFile //implements ShouldQueue
 
         $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => "$this->fileName.txt"]);
+        $process->run(null, ['FILENAME' => "tset.txt"]);
 
 
             if (!$process->isSuccessful()) {
