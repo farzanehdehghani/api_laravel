@@ -23,13 +23,6 @@ class ApiRepository
         $this->request = $request;
         return $this;
     }
-    /**
-     * @return BaseAnswer
-     */
-    function baseAnswer()
-    {
-        return BaseAnswer::getInstance();
-    }
 
     public function createFile($fileName){
 
@@ -45,6 +38,19 @@ class ApiRepository
 
         $fileCreated= $process->getOutput();
         return $fileCreated;
+
+    }
+
+    public function getRunningProcessesList()
+    {
+        $process = Process::fromShellCommandline('ps aux');
+        try {
+            $process->mustRun();
+            return $processList= $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            return $processList=  $exception->getMessage();
+
+        }
 
     }
 

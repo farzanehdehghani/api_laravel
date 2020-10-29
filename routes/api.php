@@ -18,8 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('ipcheck','auth:api')->match(['post','get'],'/get-running-processes', [App\Http\Controllers\ApiController::class, 'getRunningProcessesList'])->name('getRunningProcessesList');
+Route::middleware('ipcheck','auth:api')->match(['post','get'],'/make-directory', [App\Http\Controllers\ApiController::class, 'createDirectory'])->name('createDirectory');
+Route::middleware('ipcheck','auth:api')->match(['post','get'],'/create-file', [App\Http\Controllers\ApiController::class, 'createFile'])->name('createFile');
 
-// ,'ipcheck'//,'auth:api'
-Route::middleware('ipcheck','auth:api')->match(['post','get'],'/send-sms', 'MessageController@sendMessageViaSMS')->name('send-sms');
-Route::middleware('ipcheck','auth:api')->match(['post','get'],'/get-status', 'MessageController@getMessageStatus')->name('get-status');
-Route::middleware('ip_check_for_update_status')->match(['get'],'/update-status', 'MessageController@updateMessageStatuses');

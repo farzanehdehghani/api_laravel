@@ -25,52 +25,14 @@ class ApiController extends Controller
         $this->apiRepository= $apiRepository;
     }
     /**
-     * @return BaseAnswer
-     */
-    function baseAnswer()
-    {
-        return BaseAnswer::getInstance();
-    }
-
-    /**
      * @return \Illuminate\Http\JsonResponse
      */
     public function getRunningProcessesList(Request $request){
 
-        $process = Process::fromShellCommandline('ps aux');
-        try {
-            $process->mustRun();
-            $processList= $process->getOutput();
-        } catch (ProcessFailedException $exception) {
-            $processList=  $exception->getMessage();
+        $processList=  $this->apiRepository->getRunningProcessesList();
 
-        }
-
-//        $process->start();
-//
-//        foreach ($process as $type => $data) {
-//            if ($process::OUT === $type) {
-//                echo "\nRead from stdout: ".$data;
-//            } else { // $process::ERR === $type
-//                echo "\nRead from stderr: ".$data;
-//            }
-//        }
-
-//        echo "--------------------";
-
-//        $process->start();
-//        $iterator = $process->getIterator($process::ITER_SKIP_ERR | $process::ITER_KEEP_OUTPUT);
-//        foreach ($iterator as $data) {
-//            echo $data."\n";
-//        }
-
-        return ;
-
-//        $processList=GetRunningProcessList::dispatch();
-
-            echo -e $processList;
         return response()->json(
-            $this->apiRepository->baseAnswer()
+            baseAnswer()
                 ->setMessage('ps list successfully fetched !')
                 ->setStatus('success')
                 ->setData($processList)
@@ -86,20 +48,13 @@ class ApiController extends Controller
     public function createDirectory(Request $request){
 
         $directoryCreated=CreateDirectory::dispatch($request->directory_name);
-        if($directoryCreated)
             return response()->json(
-                $this->apiRepository->baseAnswer()
+                baseAnswer()
                     ->setMessage('directory created successfully !')
                     ->setStatus('success')
                     ->setData($directoryCreated)
             );
-        else
-            return response()->json(
-                $this->apiRepository->baseAnswer()
-                    ->setMessage('directory already exists !')
-                    ->setStatus('failed')
-                    ->setData($directoryCreated)
-            );
+
 
     }
 
@@ -112,10 +67,8 @@ class ApiController extends Controller
 
         $fileCreated=  $this->apiRepository->createFile($request->file_name);
 
-//      $fileCreated=CreateFile::dispatch$request->file_name;
-
         return response()->json(
-            $this->apiRepository->baseAnswer()
+            baseAnswer()
                 ->setMessage('file created successfully !')
                 ->setStatus('success')
                 ->setData($fileCreated)
