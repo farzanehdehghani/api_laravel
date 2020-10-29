@@ -45,7 +45,7 @@ class CreateFile //implements ShouldQueue
 //        if ( !file_exists( "/opt/myprogram/".$this->fileName ) ) {
 
         $process = Process::fromShellCommandline('touch "$FILENAME"');
-        $process->run(null, ['FILENAME' => $this->fileName.'.txt']);
+        $process->run(null, ['FILENAME' => 'testttt'.'.txt']);
 
 //
 //            $process = new Process(['touch', "/opt/myprogram/rererere.txt"]);
