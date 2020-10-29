@@ -30,7 +30,7 @@ class ApiRepository
 
         $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => "$fileName.txt"]);
+        $process->run(null, ['FILENAME' => "/opt/myprogram/$fileName.txt"]);
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);

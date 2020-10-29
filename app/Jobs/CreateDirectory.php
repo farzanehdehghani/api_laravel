@@ -42,17 +42,16 @@ class CreateDirectory //implements ShouldQueue
     public function handle()
     {
 
-        if ( !file_exists( "/opt/myprogram/".$this->directoryName ) ) {
+           //if ( !file_exists( "/opt/myprogram/".$this->directoryName ) ) {
             $process = new Process(['mkdir', "/opt/myprogram/$this->directoryName"]);
             $process->run();
 
             if (!$process->isSuccessful()) {
                 throw new ProcessFailedException($process);
             }
-
-    //        return $process->getOutput();
-                return true;
-            }else return false;
+            return $process->getOutput();
+           //return true;
+           // }else return false;
 
 
     }
