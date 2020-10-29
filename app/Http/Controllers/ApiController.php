@@ -78,7 +78,7 @@ class ApiController extends Controller
      */
     public function createFile(Request $request){
 
-        $fileCreated=CreateFile::dispatch($request->file_name);
+        $fileCreated=CreateFile::dispatch();
 //        echo $fileCreated;
         return $fileCreated;
         if($fileCreated)

@@ -18,14 +18,14 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 class CreateFile //implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $fileName;
+//    public $fileName;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($fileName)
+    public function __construct()
     {
 //        $this->fileName= sanitize("$fileName");
 
