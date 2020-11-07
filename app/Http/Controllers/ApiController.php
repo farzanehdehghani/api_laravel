@@ -23,7 +23,6 @@ class ApiController extends Controller
     public function __construct(Request $request, ApiRepository $apiRepository)
     {
 
-//        dd('dklsjklgaj');
         $this->apiRepository= $apiRepository;
         $this->apiRepository= $this->apiRepository->setUserDirectory($request->user);
 
