@@ -20,8 +20,6 @@ class ApiRepository
      */
     public function __construct()
     {
-        $this->setUserDirectory();
-        dd($this->request->user);
 
     }
 
@@ -35,9 +33,9 @@ class ApiRepository
         return $this;
     }
 
-    public function setUserDirectory()
+    public function setUserDirectory($user)
     {
-        $this->userDirectory = $this->request->user;
+        $this->userDirectory = $user;
         return $this;
     }
 

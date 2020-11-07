@@ -25,8 +25,7 @@ class ApiController extends Controller
 
 //        dd('dklsjklgaj');
         $this->apiRepository= $apiRepository;
-        $this->apiRepository= $this->apiRepository->setRequest($request);
-//        $this->apiRepository= $this->apiRepository->setUserDirectory($request->user);
+        $this->apiRepository= $this->apiRepository->setUserDirectory($request->user);
 
     }
     /**
