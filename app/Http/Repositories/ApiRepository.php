@@ -96,7 +96,7 @@ class ApiRepository
 
         $directoryList= $process->getOutput();
         $directoryList=convertBashOutputToArray($directoryList);
-        unset($directoryList[0]);
+        array_shift($directoryList);
 
         return $directoryList;
 
