@@ -94,8 +94,11 @@ class ApiRepository
             throw new ProcessFailedException($process);
         }
 
-        $fileList= $process->getOutput();
-        return convertBashOutputToArray($fileList);
+        $directoryList= $process->getOutput();
+        $directoryList=convertBashOutputToArray($directoryList);
+        unset($directoryList[0]);
+
+        return $directoryList;
 
     }
 
