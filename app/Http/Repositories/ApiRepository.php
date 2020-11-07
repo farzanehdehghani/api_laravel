@@ -13,6 +13,15 @@ class ApiRepository
 {
 
     private $request;
+    private $userDirectory;
+
+    /**
+     * ApiRepository constructor.
+     */
+    public function __construct()
+    {
+        $this->userDirectory=auth()->user()->email;
+    }
 
     /**
      * @param Request $request
@@ -30,7 +39,7 @@ class ApiRepository
 
         $process = Process::fromShellCommandline('touch "$FILENAME"');
 
-        $process->run(null, ['FILENAME' => "/opt/myprogram/$fileName.txt"]);
+        $process->run(null, ['FILENAME' => "/opt/myprogram/$this->userDirectory/$fileName.txt"]);
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
@@ -56,10 +65,9 @@ class ApiRepository
 
     public function getDirectoryList()
     {
-        $userDirectory=auth()->user()->email;
         $process = Process::fromShellCommandline('find "$USER_DIRECTORY" -type d');
 
-        $process->run(null, ['USER_DIRECTORY' => "/opt/myprogram/$userDirectory"]);
+        $process->run(null, ['USER_DIRECTORY' => "/opt/myprogram/$this->userDirectory"]);
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
@@ -75,7 +83,7 @@ class ApiRepository
         $userDirectory=auth()->user()->email;
         $process = Process::fromShellCommandline('find "$USER_DIRECTORY" -type f');
 
-        $process->run(null, ['USER_DIRECTORY' => "/opt/myprogram/$userDirectory"]);
+        $process->run(null, ['USER_DIRECTORY' => "/opt/myprogram/$this->userDirectory"]);
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);

@@ -21,6 +21,7 @@ class CreateDirectory //implements ShouldQueue
     public $timeout = 240;//10 min
     public $tries = 2;
     public $directoryName;
+    public $userDirectory;
 
     /**
      * Create a new job instance.
@@ -31,6 +32,8 @@ class CreateDirectory //implements ShouldQueue
     {
 
         $this->directoryName= sanitize($directoryName);
+        $this->userDirectory=auth()->user()->email;
+
 
     }
 
@@ -43,7 +46,7 @@ class CreateDirectory //implements ShouldQueue
     {
 
            //if ( !file_exists( "/opt/myprogram/".$this->directoryName ) ) {
-            $process = new Process(['mkdir', "/opt/myprogram/$this->directoryName"]);
+            $process = new Process(['mkdir', "/opt/myprogram/$this->userDirectory/$this->directoryName"]);
             $process->run();
 
             if (!$process->isSuccessful()) {
