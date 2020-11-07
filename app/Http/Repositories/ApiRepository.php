@@ -33,12 +33,21 @@ class ApiRepository
         return $this;
     }
 
+    /**
+     * @param $user
+     * @return $this
+     */
     public function setUserDirectory($user)
     {
+        //user already validated in middleware
         $this->userDirectory = $user;
         return $this;
     }
 
+    /**
+     * @param $fileName
+     * @return string
+     */
     public function createFile($fileName){
 
         $fileName=sanitize($fileName);
@@ -56,6 +65,9 @@ class ApiRepository
 
     }
 
+    /**
+     * @return string
+     */
     public function getRunningProcessesList()
     {
         $process = Process::fromShellCommandline('ps aux');
@@ -69,6 +81,9 @@ class ApiRepository
 
     }
 
+    /**
+     * @return string
+     */
     public function getDirectoryList()
     {
         $process = Process::fromShellCommandline('find "$USER_DIRECTORY" -type d -printf "%f\n"');
@@ -84,6 +99,9 @@ class ApiRepository
 
     }
 
+    /**
+     * @return string
+     */
     public function getFileList()
     {
         $userDirectory=auth()->user()->email;

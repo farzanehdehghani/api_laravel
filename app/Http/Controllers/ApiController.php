@@ -95,6 +95,11 @@ class ApiController extends Controller
         );
 
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getFileList(Request $request){
 
         $fileList=  $this->apiRepository->getFileList();

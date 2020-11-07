@@ -51,7 +51,13 @@
                         <p>example:</p>
                         <p>http:://194.5.195.128/api/get-directory-list?user={{auth()->user()->email}}&api_token={{auth()->user()->api_token}}</p>
                     </div>
-
+                    <div>
+                        <h3>apiname: get-file-list</h3>
+                        <p>method: get / post</p>
+                        <p>arguments: user,api_token</p>
+                        <p>example:</p>
+                        <p>http:://194.5.195.128/api/get-file-list?user={{auth()->user()->email}}&api_token={{auth()->user()->api_token}}</p>
+                    </div>
 
                 </div>
             </div>
