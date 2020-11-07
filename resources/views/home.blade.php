@@ -28,14 +28,14 @@
                         <p>method: get / post</p>
                         <p>arguments: directory_name,user,api_token</p>
                         <p>example:</p>
-                        <p>http:://194.5.195.128/api/make-directory?directory_name= string&user={{auth()->user()->email}}&api_token={{auth()->user()->api_token}}</p>
+                        <p>http:://194.5.195.128/api/make-directory?directory_name=string&user={{auth()->user()->email}}&api_token={{auth()->user()->api_token}}</p>
                     </div>
                     <div>
                         <h3>apiname: create-file</h3>
                         <p>method: get / post</p>
                         <p>arguments: file_name,user,api_token</p>
                         <p>example:</p>
-                        <w>http:://194.5.195.128/api/create-file?file_name= string&user={{auth()->user()->email}}&api_token={{auth()->user()->api_token}}</w>
+                        <p>http:://194.5.195.128/api/create-file?file_name=string&user={{auth()->user()->email}}&api_token={{auth()->user()->api_token}}</p>
                     </div>
                     <div>
                         <h3>apiname: get-running-processes</h3>
