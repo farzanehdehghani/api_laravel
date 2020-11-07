@@ -20,7 +20,8 @@ function sanitize($string){
 
 function convertBashOutputToArray($string){
 
-    $string = explode('\\n', trim($string));
+    $string = preg_split('/\n|\r\n?/', $string);
+//    $string = explode('\\n', trim($string));
 //    $string= str_replace("\n", "<br />", $string);
     return $string;
 
