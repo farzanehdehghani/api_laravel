@@ -17,3 +17,11 @@ function sanitize($string){
     return $string;
 
 }
+
+function convertBashOutputToArray($string){
+
+    $string = explode('\n', trim($string));
+//    $string= str_replace("\n", "<br />", $string);
+    return $string;
+
+}
