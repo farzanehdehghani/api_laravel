@@ -98,15 +98,6 @@ class ApiRepository
         $fileList= $process->getOutput();
         return $fileList;
 
-    /*    //find  /opt/myprogram/$this->userDirectory -type f
-        $process = Process::fromShellCommandline("find  /opt/myprogram/$this->userDirectory -type f");
-        try {
-            $process->mustRun();
-            return $processList= $process->getOutput();
-        } catch (ProcessFailedException $exception) {
-            return $processList=  $exception->getMessage();
-
-        }*/
 
     }
 
