@@ -20,12 +20,9 @@ class ApiRepository
      */
     public function __construct()
     {
-        dd(auth()->user());
+        $this->setUserDirectory();
+        dd($this->request->user);
 
-        if(auth()->check())
-            $this->userDirectory=auth()->user()->email;
-        else
-            dd(auth()->user());
     }
 
     /**
@@ -35,6 +32,12 @@ class ApiRepository
     public function setRequest(Request $request)
     {
         $this->request = $request;
+        return $this;
+    }
+
+    public function setUserDirectory($user)
+    {
+        $this->userDirectory = $this->request->user;
         return $this;
     }
 

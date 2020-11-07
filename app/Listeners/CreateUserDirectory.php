@@ -16,14 +16,14 @@ class CreateUserDirectory
      */
     public function handle(Registered $event)
     {
-        $userName=$event->user->email;
-        $process = new Process(['mkdir', "/opt/myprogram/$userName"]);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-        return $process->getOutput();
+//        $userName=$event->user->email;
+//        $process = new Process(['mkdir', "/opt/myprogram/$userName"]);
+//        $process->run();
+//
+//        if (!$process->isSuccessful()) {
+//            throw new ProcessFailedException($process);
+//        }
+//        return $process->getOutput();
 
     }
 }

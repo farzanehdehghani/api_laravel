@@ -20,9 +20,14 @@ class ApiController extends Controller
      * ApiController constructor.
      * @param ApiRepository $apiRepository
      */
-    public function __construct(ApiRepository $apiRepository)
+    public function __construct(Request $request, ApiRepository $apiRepository)
     {
+
+//        dd('dklsjklgaj');
         $this->apiRepository= $apiRepository;
+        $this->apiRepository= $this->apiRepository->setRequest($request);
+//        $this->apiRepository= $this->apiRepository->setUserDirectory($request->user);
+
     }
     /**
      * @return \Illuminate\Http\JsonResponse
