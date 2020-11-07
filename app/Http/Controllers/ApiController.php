@@ -76,6 +76,10 @@ class ApiController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getDirectoryList(Request $request){
 
         $directoryList=  $this->apiRepository->getDirectoryList();

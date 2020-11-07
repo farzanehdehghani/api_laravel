@@ -56,7 +56,7 @@ class ApiRepository
 
     public function getDirectoryList()
     {
-        $process = Process::fromShellCommandline('ls');
+        $process = Process::fromShellCommandline('ls /opt/myprogram');
         try {
             $process->mustRun();
             return $processList= $process->getOutput();
@@ -64,6 +64,19 @@ class ApiRepository
             return $processList=  $exception->getMessage();
 
         }
+
+    }
+
+    public function createUserDirectory(){
+
+        $userName=auth()->user()->email;
+        $process = new Process(['mkdir', "/opt/myprogram/$userName"]);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+         return $process->getOutput();
 
     }
 
