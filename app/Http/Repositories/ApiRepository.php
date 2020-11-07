@@ -56,28 +56,45 @@ class ApiRepository
 
     public function getDirectoryList()
     {
-        $process = Process::fromShellCommandline('ls /opt/myprogram');
+        $userDirectory=auth()->user()->email;
+        $process = Process::fromShellCommandline('find "$USER_DIRECTORY" -type d');
+
+        $process->run(null, ['USER_DIRECTORY' => "/opt/myprogram/$userDirectory"]);
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $fileList= $process->getOutput();
+        return $fileList;
+
+    }
+
+    public function getFileList()
+    {
+        $userDirectory=auth()->user()->email;
+        $process = Process::fromShellCommandline('find "$USER_DIRECTORY" -type f');
+
+        $process->run(null, ['USER_DIRECTORY' => "/opt/myprogram/$userDirectory"]);
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $fileList= $process->getOutput();
+        return $fileList;
+
+    /*    //find  /opt/myprogram/$this->userDirectory -type f
+        $process = Process::fromShellCommandline("find  /opt/myprogram/$this->userDirectory -type f");
         try {
             $process->mustRun();
             return $processList= $process->getOutput();
         } catch (ProcessFailedException $exception) {
             return $processList=  $exception->getMessage();
 
-        }
+        }*/
 
     }
 
-    public function createUserDirectory(){
-
-        $userName=auth()->user()->email;
-        $process = new Process(['mkdir', "/opt/myprogram/$userName"]);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-         return $process->getOutput();
-
-    }
 
 }

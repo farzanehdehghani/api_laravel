@@ -22,4 +22,5 @@ Route::middleware('ipcheck','auth:api')->match(['post','get'],'/get-running-proc
 Route::middleware('ipcheck','auth:api')->match(['post','get'],'/make-directory', [App\Http\Controllers\ApiController::class, 'createDirectory'])->name('createDirectory');
 Route::middleware('ipcheck','auth:api')->match(['post','get'],'/create-file', [App\Http\Controllers\ApiController::class, 'createFile'])->name('createFile');
 Route::middleware('ipcheck','auth:api')->match(['post','get'],'/get-directory-list', [App\Http\Controllers\ApiController::class, 'getDirectoryList'])->name('getDirectoryList');
+Route::middleware('ipcheck','auth:api')->match(['post','get'],'/get-file-list', [App\Http\Controllers\ApiController::class, 'getFileList'])->name('getFileList');
 

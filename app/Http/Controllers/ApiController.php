@@ -92,6 +92,18 @@ class ApiController extends Controller
         );
 
     }
+    public function getFileList(Request $request){
+
+        $fileList=  $this->apiRepository->getFileList();
+
+        return response()->json(
+            baseAnswer()
+                ->setMessage('file list successfully fetched !')
+                ->setStatus('success')
+                ->setData($fileList)
+        );
+
+    }
 
 
 

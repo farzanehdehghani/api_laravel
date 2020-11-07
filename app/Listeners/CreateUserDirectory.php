@@ -8,11 +8,6 @@ use Symfony\Component\Process\Process;
 class CreateUserDirectory
 {
 
-//    public function __construct(Authenticatable $user)
-//    {
-//
-//    }
-
     /**
      * Handle the event.
      *
