@@ -107,7 +107,6 @@ class ApiRepository
      */
     public function getFileList()
     {
-        $userDirectory=auth()->user()->email;
         $process = Process::fromShellCommandline('find "$USER_DIRECTORY" -type f -printf "%f\n"');
 
         $process->run(null, ['USER_DIRECTORY' => "/opt/myprogram/$this->userDirectory"]);
@@ -117,7 +116,9 @@ class ApiRepository
         }
 
         $fileList= $process->getOutput();
-        return convertBashOutputToArray($fileList);
+        $fileList=convertBashOutputToArray($fileList);
+
+        return $fileList;
 
 
     }
