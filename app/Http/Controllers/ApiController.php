@@ -76,6 +76,19 @@ class ApiController extends Controller
 
     }
 
+    public function getDirectoryList(Request $request){
+
+        $directoryList=  $this->apiRepository->getDirectoryList();
+
+        return response()->json(
+            baseAnswer()
+                ->setMessage('directory list successfully fetched !')
+                ->setStatus('success')
+                ->setData($directoryList)
+        );
+
+    }
+
 
 
 }

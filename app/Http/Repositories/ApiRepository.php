@@ -54,4 +54,17 @@ class ApiRepository
 
     }
 
+    public function getDirectoryList()
+    {
+        $process = Process::fromShellCommandline('ls');
+        try {
+            $process->mustRun();
+            return $processList= $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            return $processList=  $exception->getMessage();
+
+        }
+
+    }
+
 }

@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('ipcheck','auth:api')->match(['post','get'],'/get-running-processes', [App\Http\Controllers\ApiController::class, 'getRunningProcessesList'])->name('getRunningProcessesList');
 Route::middleware('ipcheck','auth:api')->match(['post','get'],'/make-directory', [App\Http\Controllers\ApiController::class, 'createDirectory'])->name('createDirectory');
 Route::middleware('ipcheck','auth:api')->match(['post','get'],'/create-file', [App\Http\Controllers\ApiController::class, 'createFile'])->name('createFile');
+Route::middleware('ipcheck','auth:api')->match(['post','get'],'/get-directory-list', [App\Http\Controllers\ApiController::class, 'getDirectoryList'])->name('getDirectoryList');
 
