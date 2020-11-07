@@ -95,7 +95,7 @@ class ApiRepository
         }
 
         $fileList= $process->getOutput();
-        return $fileList;
+        return trim($fileList);
 
     }
 
@@ -114,7 +114,7 @@ class ApiRepository
         }
 
         $fileList= $process->getOutput();
-        return $fileList;
+        return trim($fileList);
 
 
     }
