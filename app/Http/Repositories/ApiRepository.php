@@ -20,7 +20,12 @@ class ApiRepository
      */
     public function __construct()
     {
-        $this->userDirectory=auth()->user()->email;
+        dd(auth()->user());
+
+        if(auth()->check())
+            $this->userDirectory=auth()->user()->email;
+        else
+            dd(auth()->user());
     }
 
     /**
