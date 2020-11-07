@@ -35,7 +35,7 @@ class ApiRepository
         return $this;
     }
 
-    public function setUserDirectory($user)
+    public function setUserDirectory()
     {
         $this->userDirectory = $this->request->user;
         return $this;
